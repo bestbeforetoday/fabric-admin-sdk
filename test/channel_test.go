@@ -5,10 +5,11 @@ import (
 	"crypto/tls"
 	"crypto/x509"
 	"fmt"
-	"github.com/hyperledger/fabric-admin-sdk/internal/protoutil"
-	"github.com/hyperledger/fabric-protos-go-apiv2/orderer"
 	"log"
 	"os"
+
+	"github.com/hyperledger/fabric-admin-sdk/internal/protoutil"
+	"github.com/hyperledger/fabric-protos-go-apiv2/orderer"
 
 	"github.com/hyperledger/fabric-admin-sdk/internal/network"
 	"github.com/hyperledger/fabric-admin-sdk/pkg/channel"
@@ -136,7 +137,7 @@ var _ = Describe("channel", func() {
 			Expect(err).NotTo(HaveOccurred())
 
 			// get update config file, see https://hyperledger-fabric.readthedocs.io/en/release-2.4/channel_update_tutorial.html#add-the-org3-crypto-material
-			updateEnvelope, err := os.ReadFile("./test/org3_update_in_envelope.pb")
+			updateEnvelope, err := os.ReadFile("./org3_update_in_envelope.pb")
 			Expect(err).NotTo(HaveOccurred())
 			envelope, err := protoutil.UnmarshalEnvelope(updateEnvelope)
 			Expect(err).NotTo(HaveOccurred())
