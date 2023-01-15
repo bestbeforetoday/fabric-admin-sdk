@@ -10,6 +10,8 @@ import (
 	"crypto/ecdsa"
 	"crypto/x509"
 	"fmt"
+	"github.com/hyperledger/fabric-protos-go-apiv2/msp"
+	"google.golang.org/protobuf/proto"
 )
 
 // Identity used to interact with a Fabric network.
@@ -22,11 +24,15 @@ type Identity interface {
 type Signer interface {
 	Sign(message []byte) ([]byte, error)
 }
+type Serializer interface {
+	Serialize() ([]byte, error)
+}
 
 // SigningIdentity represents an identity that is able to sign messages.
 type SigningIdentity interface {
 	Identity
 	Signer
+	Serializer
 }
 
 func NewPrivateKeySigningIdentity(mspID string, certificate *x509.Certificate, privateKey crypto.PrivateKey) (SigningIdentity, error) {
@@ -75,4 +81,12 @@ func (id *signingIdentity) Credentials() []byte {
 
 func (id *signingIdentity) Sign(message []byte) ([]byte, error) {
 	return id.sign(message)
+}
+
+func (id *signingIdentity) Serialize() ([]byte, error) {
+	serializedIdentity := &msp.SerializedIdentity{
+		Mspid:   id.MspID(),
+		IdBytes: id.Credentials(),
+	}
+	return proto.Marshal(serializedIdentity)
 }
