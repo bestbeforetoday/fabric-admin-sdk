@@ -12,9 +12,10 @@ import (
 	"encoding/pem"
 	"errors"
 	"fmt"
+	"os"
+
 	"github.com/hyperledger/fabric-admin-sdk/internal/protoutil"
 	"github.com/hyperledger/fabric-admin-sdk/internal/util"
-	"os"
 
 	"github.com/hyperledger/fabric-admin-sdk/internal/configtxgen/encoder"
 	"github.com/hyperledger/fabric-admin-sdk/internal/configtxgen/genesisconfig"

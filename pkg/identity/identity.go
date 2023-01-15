@@ -10,6 +10,7 @@ import (
 	"crypto/ecdsa"
 	"crypto/x509"
 	"fmt"
+
 	"github.com/hyperledger/fabric-protos-go-apiv2/msp"
 	"google.golang.org/protobuf/proto"
 )
