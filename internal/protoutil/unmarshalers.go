@@ -1,9 +1,9 @@
 package protoutil
 
 import (
-	"github.com/golang/protobuf/proto"
 	cb "github.com/hyperledger/fabric-protos-go-apiv2/common"
 	"github.com/pkg/errors"
+	"google.golang.org/protobuf/proto"
 )
 
 // UnmarshalEnvelope unmarshals bytes to a Envelope

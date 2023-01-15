@@ -159,7 +159,9 @@ var _ = Describe("channel", func() {
 			Expect(err).NotTo(HaveOccurred())
 			ordererClient, err := orderer.NewAtomicBroadcastClient(ordererConnection).Broadcast(context.Background())
 			Expect(err).NotTo(HaveOccurred())
-			defer ordererClient.CloseSend()
+			defer func(ordererClient orderer.AtomicBroadcast_BroadcastClient) {
+				_ = ordererClient.CloseSend()
+			}(ordererClient)
 			err = ordererClient.Send(envelope)
 			Expect(err).NotTo(HaveOccurred())
 			response, err := ordererClient.Recv()
