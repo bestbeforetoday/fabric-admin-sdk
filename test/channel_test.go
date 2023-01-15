@@ -119,7 +119,7 @@ var _ = Describe("channel", func() {
 			}
 			var channelID = "mychannel"
 			// Orderer
-			var OrdererAddr = "orderer.example.com:7050"
+			var OrdererAddr = "localhost:7050"
 			var OrdererTLSCACert = "../fabric-samples/test-network/organizations/ordererOrganizations/example.com/tlsca/tlsca.example.com-cert.pem"
 
 			// Peer1
