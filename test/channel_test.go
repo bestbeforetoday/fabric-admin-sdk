@@ -120,7 +120,8 @@ var _ = Describe("channel", func() {
 			var channelID = "mychannel"
 			// Orderer
 			var OrdererAddr = "orderer.example.com:7050"
-			var OrdererTLSCACert = "../fabric-samples/test-network/organizations/example.com/msp/tlscacerts/tlsca.example.com-cert.pem"
+			var OrdererTLSCACert = "../fabric-samples/test-network/organizations/ordererOrganizations/example.com/tlsca/tlsca.example.com-cert.pem"
+
 			// Peer1
 			var MSPID = "Org1MSP"
 			var PrivKeyPath = "../fabric-samples/test-network/organizations/peerOrganizations/org1.example.com/users/Admin@org1.example.com/msp/keystore/priv_sk"
