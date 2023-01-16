@@ -24,6 +24,11 @@ import (
 	cb "github.com/hyperledger/fabric-protos-go-apiv2/common"
 )
 
+const (
+	msgVersion = int32(0)
+	epoch      = 0
+)
+
 // configtxGen
 // base on Profile return block
 func ConfigTxGen(config *genesisconfig.Profile, channelID string) (*cb.Block, error) {
@@ -170,5 +175,5 @@ func SignConfigTx(channelID string, envConfigUpdate *cb.Envelope, signer identit
 
 	configUpdateEnv.Signatures = append(configUpdateEnv.Signatures, configSig)
 
-	return protoutil.CreateSignedEnvelope(cb.HeaderType_CONFIG_UPDATE, channelID, signer, configUpdateEnv, 0, 0)
+	return protoutil.CreateSignedEnvelope(cb.HeaderType_CONFIG_UPDATE, channelID, signer, configUpdateEnv, msgVersion, epoch)
 }

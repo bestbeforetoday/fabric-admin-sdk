@@ -24,8 +24,6 @@ type Identity interface {
 // Signer can sign messages using an identity's private credentials.
 type Signer interface {
 	Sign(message []byte) ([]byte, error)
-}
-type Serializer interface {
 	Serialize() ([]byte, error)
 }
 
@@ -33,7 +31,6 @@ type Serializer interface {
 type SigningIdentity interface {
 	Identity
 	Signer
-	Serializer
 }
 
 func NewPrivateKeySigningIdentity(mspID string, certificate *x509.Certificate, privateKey crypto.PrivateKey) (SigningIdentity, error) {
