@@ -18,27 +18,15 @@ import (
 	"google.golang.org/protobuf/proto"
 )
 
-const approveTransactionName = "ApproveChaincodeDefinitionForMyOrg"
-
-type Definition struct {
-	Name                 string
-	Version              string
-	Sequence             int64
-	EndorsementPolicy    string
-	ValidationPlugin     string
-	ValidationParameters []byte
-	PackageID            string
-}
-
-// Install a chaincode package to specific peer.
-func Approve(ctx context.Context, connection grpc.ClientConnInterface, id identity.SigningIdentity, channelName string, chaincodeDef *Definition) error {
+// Approve a chaincode package to specific peer.
+func Approve(ctx context.Context, connection grpc.ClientConnInterface, id identity.SigningIdentity, chaincodeDef *Definition) error {
 	approveArgs := &lifecycle.ApproveChaincodeDefinitionForMyOrgArgs{
 		Name:                chaincodeDef.Name,
 		Version:             chaincodeDef.Version,
 		Sequence:            chaincodeDef.Sequence,
 		EndorsementPlugin:   chaincodeDef.EndorsementPolicy,
 		ValidationPlugin:    chaincodeDef.ValidationPlugin,
-		ValidationParameter: chaincodeDef.ValidationParameters,
+		ValidationParameter: chaincodeDef.ValidationParameterBytes,
 		Source:              newChaincodeSource(chaincodeDef.PackageID),
 	}
 	approveArgsBytes, err := proto.Marshal(approveArgs)
@@ -52,7 +40,7 @@ func Approve(ctx context.Context, connection grpc.ClientConnInterface, id identi
 	}
 	defer gw.Close()
 
-	approveProposal, err := gw.GetNetwork(channelName).
+	approveProposal, err := gw.GetNetwork(chaincodeDef.ChannelID).
 		GetContract(lifecycleChaincodeName).
 		NewProposal(approveTransactionName, client.WithBytesArguments(approveArgsBytes), client.WithEndorsingOrganizations(id.MspID()))
 	if err != nil {

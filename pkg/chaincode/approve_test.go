@@ -73,9 +73,10 @@ var _ = Describe("Approve", func() {
 	BeforeEach(func() {
 		channelName = "CHANNEL"
 		chaincodeDefinition = &chaincode.Definition{
-			Name:     "CHAINCODE",
-			Version:  "1.0",
-			Sequence: 1,
+			Name:      "CHAINCODE",
+			Version:   "1.0",
+			Sequence:  1,
+			ChannelID: channelName,
 		}
 	})
 
@@ -111,7 +112,8 @@ var _ = Describe("Approve", func() {
 		ctx, cancel := context.WithCancel(specCtx)
 		cancel()
 
-		err := chaincode.Approve(ctx, mockConnection, mockSigner, channelName, chaincodeDefinition)
+		err := chaincode.Approve(ctx, mockConnection, mockSigner, chaincodeDefinition)
+		Expect(err).NotTo(HaveOccurred())
 
 		Expect(endorseCtxErr).To(BeIdenticalTo(context.Canceled), "endorse context error")
 		Expect(submitCtxErr).To(BeIdenticalTo(context.Canceled), "submit context error")
@@ -131,7 +133,7 @@ var _ = Describe("Approve", func() {
 
 		mockSigner := NewMockSigner(controller, "", nil, nil)
 
-		err := chaincode.Approve(specCtx, mockConnection, mockSigner, channelName, chaincodeDefinition)
+		err := chaincode.Approve(specCtx, mockConnection, mockSigner, chaincodeDefinition)
 
 		Expect(err).To(MatchError(expectedErr))
 	})
@@ -159,7 +161,7 @@ var _ = Describe("Approve", func() {
 
 		mockSigner := NewMockSigner(controller, "", nil, nil)
 
-		err := chaincode.Approve(specCtx, mockConnection, mockSigner, channelName, chaincodeDefinition)
+		err := chaincode.Approve(specCtx, mockConnection, mockSigner, chaincodeDefinition)
 
 		Expect(err).To(MatchError(expectedErr))
 	})
@@ -182,7 +184,7 @@ var _ = Describe("Approve", func() {
 
 		mockSigner := NewMockSigner(controller, "", nil, nil)
 
-		err := chaincode.Approve(specCtx, mockConnection, mockSigner, channelName, chaincodeDefinition)
+		err := chaincode.Approve(specCtx, mockConnection, mockSigner, chaincodeDefinition)
 
 		Expect(err).To(MatchError(expectedErr))
 	})
@@ -222,7 +224,7 @@ var _ = Describe("Approve", func() {
 
 			mockSigner := NewMockSigner(controller, "", nil, nil)
 
-			err := chaincode.Approve(specCtx, mockConnection, mockSigner, channelName, input)
+			err := chaincode.Approve(specCtx, mockConnection, mockSigner, input)
 			Expect(err).NotTo(HaveOccurred())
 
 			invocationSpec := AssertUnmarshalInvocationSpec(endorseRequest.GetProposedTransaction())
