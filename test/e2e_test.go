@@ -237,17 +237,17 @@ var _ = Describe("e2e", func() {
 			})
 
 			Definition := chaincode.Definition{
-				ChannelID:                channelName,
-				InputTxID:                "",
-				PackageID:                "",
-				Name:                     "basic",
-				Version:                  "1.0",
-				EndorsementPlugin:        "",
-				ValidationPlugin:         "",
-				Sequence:                 1,
-				ValidationParameterBytes: nil,
-				InitRequired:             false,
-				CollectionConfigPackage:  nil,
+				ChannelID:               channelName,
+				InputTxID:               "",
+				PackageID:               "",
+				Name:                    "basic",
+				Version:                 "1.0",
+				EndorsementPlugin:       "",
+				ValidationPlugin:        "",
+				Sequence:                1,
+				ValidationParameter:     nil,
+				InitRequired:            false,
+				CollectionConfigPackage: nil,
 			}
 			time.Sleep(time.Duration(15) * time.Second)
 

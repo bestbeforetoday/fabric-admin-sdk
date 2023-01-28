@@ -40,7 +40,7 @@ func CreateCommitProposal(Definition Definition, id identity.SigningIdentity) (*
 		Sequence:            Definition.Sequence,
 		EndorsementPlugin:   Definition.EndorsementPlugin,
 		ValidationPlugin:    Definition.ValidationPlugin,
-		ValidationParameter: Definition.ValidationParameterBytes,
+		ValidationParameter: Definition.ValidationParameter,
 		InitRequired:        Definition.InitRequired,
 		Collections:         Definition.CollectionConfigPackage,
 	}

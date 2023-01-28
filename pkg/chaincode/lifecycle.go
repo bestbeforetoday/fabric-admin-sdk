@@ -25,16 +25,16 @@ const (
 
 // Chaincode Define
 type Definition struct {
-	ChannelID                string
-	InputTxID                string
-	PackageID                string
-	Name                     string
-	Version                  string
-	EndorsementPlugin        string
-	EndorsementPolicy        string
-	ValidationPlugin         string
-	Sequence                 int64
-	ValidationParameterBytes []byte
-	InitRequired             bool
-	CollectionConfigPackage  *peer.CollectionConfigPackage
+	ChannelID               string
+	InputTxID               string
+	PackageID               string
+	Name                    string
+	Version                 string
+	EndorsementPlugin       string
+	EndorsementPolicy       string
+	ValidationPlugin        string
+	Sequence                int64
+	ValidationParameter     []byte
+	InitRequired            bool
+	CollectionConfigPackage *peer.CollectionConfigPackage
 }

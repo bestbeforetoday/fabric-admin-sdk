@@ -100,7 +100,7 @@ func createReadinessCheckProposal(Definition Definition, id identity.Identity) (
 		Sequence:            Definition.Sequence,
 		EndorsementPlugin:   Definition.EndorsementPlugin,
 		ValidationPlugin:    Definition.ValidationPlugin,
-		ValidationParameter: Definition.ValidationParameterBytes,
+		ValidationParameter: Definition.ValidationParameter,
 		InitRequired:        Definition.InitRequired,
 		Collections:         Definition.CollectionConfigPackage,
 	}

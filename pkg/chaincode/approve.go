@@ -26,7 +26,7 @@ func Approve(ctx context.Context, connection grpc.ClientConnInterface, id identi
 		Sequence:            chaincodeDef.Sequence,
 		EndorsementPlugin:   chaincodeDef.EndorsementPolicy,
 		ValidationPlugin:    chaincodeDef.ValidationPlugin,
-		ValidationParameter: chaincodeDef.ValidationParameterBytes,
+		ValidationParameter: chaincodeDef.ValidationParameter,
 		Source:              newChaincodeSource(chaincodeDef.PackageID),
 	}
 	approveArgsBytes, err := proto.Marshal(approveArgs)
