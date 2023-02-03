@@ -25,9 +25,6 @@ import (
 
 const (
 	ordererAdminsPolicyName = "/Channel/Orderer/Admins"
-
-	msgVersion = int32(0)
-	epoch      = 0
 )
 
 const (

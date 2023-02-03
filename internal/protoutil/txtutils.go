@@ -135,6 +135,9 @@ func NewSignatureHeader(id identity.Identity) (*common.SignatureHeader, error) {
 		IdBytes: id.Credentials(),
 	}
 	creator, err := proto.Marshal(serializedIdentity)
+	if err != nil {
+		return nil, err
+	}
 	nonce, err := CreateNonce()
 	if err != nil {
 		return nil, err
