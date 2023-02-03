@@ -24,7 +24,6 @@ type Identity interface {
 // Signer can sign messages using an identity's private credentials.
 type Signer interface {
 	Sign(message []byte) ([]byte, error)
-	Serialize() ([]byte, error)
 }
 
 // SigningIdentity represents an identity that is able to sign messages.
